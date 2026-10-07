@@ -56,21 +56,24 @@ main() {
   fi
 
   commit=$(git rev-parse HEAD)
-  if [ "$mode" = --pull ] && [ -f "$marker" ] && [ "$(cat "$marker")" = "$commit" ]; then
+  if [ "$mode" = --pull ] && [ -f "$marker" ] && [ "$(cat "$marker")" = "$commit" ] && [ -f "$destination/index.html" ] && [ -f "$destination/gallery.html" ]; then
     exit 0
   fi
   test -f index.html
+  test -f gallery.html
   test -d assets
 
   # Publish assets first and replace the entry page only after they are copied.
   # Other hosting files (including .htaccess) are left in place.
   cp -R assets "$destination/"
-  temporary_index=$(mktemp "$destination/.coolzone-index.XXXXXX")
-  trap 'rm -f -- "$temporary_index"' EXIT HUP INT TERM
-  cp index.html "$temporary_index"
-  chmod 644 "$temporary_index"
-  mv -fT "$temporary_index" "$destination/index.html"
-  trap - EXIT HUP INT TERM
+  for page in gallery.html index.html; do
+    temporary_page=$(mktemp "$destination/.coolzone-page.XXXXXX")
+    trap 'rm -f -- "$temporary_page"' EXIT HUP INT TERM
+    cp "$page" "$temporary_page"
+    chmod 644 "$temporary_page"
+    mv -fT "$temporary_page" "$destination/$page"
+    trap - EXIT HUP INT TERM
+  done
 
   # A failed deployment never advances this marker and will be retried.
   printf '%s\n' "$commit" > "$marker"

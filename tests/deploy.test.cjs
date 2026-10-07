@@ -59,6 +59,7 @@ try {
   fs.mkdirSync(path.join(source, 'assets'));
   fs.copyFileSync(path.join(__dirname, '../scripts/deploy.sh'), path.join(source, 'scripts/deploy.sh'));
   fs.writeFileSync(path.join(source, 'index.html'), 'version one');
+  fs.writeFileSync(path.join(source, 'gallery.html'), 'gallery one');
   fs.writeFileSync(path.join(source, 'assets', 'style.css'), 'version one');
   fs.writeFileSync(path.join(source, '.gitattributes'), '*.sh text eol=lf\n');
   git(source, 'init', '-q', '-b', 'main');
@@ -70,6 +71,7 @@ try {
   check('initial publication and preservation of hosting files', () => {
     deploy(0);
     assert.equal(fs.readFileSync(path.join(destination, 'index.html'), 'utf8'), 'version one');
+    assert.equal(fs.readFileSync(path.join(destination, 'gallery.html'), 'utf8'), 'gallery one');
     assert.equal(fs.readFileSync(path.join(destination, '.htaccess'), 'utf8'), 'hosting settings');
     assert.equal(fs.readFileSync(marker, 'utf8').trim(), first);
   });
@@ -79,11 +81,18 @@ try {
     assert.equal(fs.statSync(path.join(destination, 'index.html')).mtimeMs, before);
   });
   fs.writeFileSync(path.join(source, 'index.html'), 'version two');
+  fs.writeFileSync(path.join(source, 'gallery.html'), 'gallery two');
   const second = commit(source, 'Second version');
   check('new commit is fetched and published', () => {
     deploy(0);
     assert.equal(fs.readFileSync(path.join(destination, 'index.html'), 'utf8'), 'version two');
+    assert.equal(fs.readFileSync(path.join(destination, 'gallery.html'), 'utf8'), 'gallery two');
     assert.equal(fs.readFileSync(marker, 'utf8').trim(), second);
+  });
+  check('missing gallery is published even when a previous script already recorded the commit', () => {
+    fs.unlinkSync(path.join(destination, 'gallery.html'));
+    deploy(0);
+    assert.equal(fs.readFileSync(path.join(destination, 'gallery.html'), 'utf8'), 'gallery two');
   });
   check('uncommitted server edits stop deployment', () => {
     fs.writeFileSync(path.join(server, 'index.html'), 'local edit');

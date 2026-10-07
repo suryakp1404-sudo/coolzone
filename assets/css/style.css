@@ -1481,6 +1481,49 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Project Gallery
+--------------------------------------------------------------*/
+.project-gallery .project-card {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #e1e8eb;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(0, 32, 96, 0.08);
+}
+
+.project-gallery .project-photo-link {
+  display: block;
+}
+
+.project-gallery .project-photo-link:focus-visible {
+  outline: 3px solid #3e9f00;
+  outline-offset: -3px;
+}
+
+.project-gallery .project-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-gallery figcaption {
+  padding: 24px;
+}
+
+.project-gallery figcaption h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #002060;
+}
+
+.project-gallery figcaption p {
+  margin: 0;
+  color: #666;
+}
+
+/*--------------------------------------------------------------
 # Media
 --------------------------------------------------------------*/
 .media .media-placeholder {
