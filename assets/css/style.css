@@ -150,6 +150,11 @@ h6 {
   #header .logo img {
     width: 260px;
   }
+
+  #header .navbar > ul > li > a {
+    padding-left: 12px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -1473,6 +1478,33 @@ section {
 .team .member .social i {
   font-size: 18px;
   margin: 0 2px;
+}
+
+/*--------------------------------------------------------------
+# Media
+--------------------------------------------------------------*/
+.media .media-placeholder {
+  padding: 40px 24px;
+  text-align: center;
+  background: #f7fafc;
+  border: 1px solid #e1e8eb;
+  border-radius: 8px;
+}
+
+.media .media-placeholder i {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 44px;
+  color: #002060;
+}
+
+.media .media-placeholder h3 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.media .media-placeholder p {
+  margin-bottom: 0;
 }
 
 /*--------------------------------------------------------------
