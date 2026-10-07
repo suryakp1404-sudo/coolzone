@@ -102,7 +102,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  height: 120px;
+  height: 144px;
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
@@ -142,7 +142,8 @@ h6 {
   object-fit: cover;
   object-position: center 65%;
   max-width: calc(100vw - 80px);
-  transform: scaleY(1.2);
+  transform: scaleY(1.45);
+  transform-origin: center;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -152,8 +153,13 @@ h6 {
 }
 
 @media (max-width: 991px) {
+  #header {
+    height: 132px;
+  }
+
   #header .logo img {
     width: 300px;
+    transform: scaleY(1.35);
   }
 }
 
