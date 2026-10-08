@@ -63,7 +63,7 @@
    * Header fixed top on scroll
    */
   let selectHeader = select('#header')
-  if (selectHeader) {
+  if (selectHeader && !selectHeader.hasAttribute('data-static-header')) {
     let headerOffset = selectHeader.offsetTop
     let nextElement = selectHeader.nextElementSibling
     const headerFixed = () => {

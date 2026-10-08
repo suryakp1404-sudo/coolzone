@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Project Gallery | Cool Zone Air Systems</title>
-  <meta content="Explore project photos from Cool Zone Air Systems, including our VRV systems installations." name="description">
+  <title>Our Brochure | Cool Zone Air Systems</title>
+  <meta content="Turn through the Cool Zone Air Systems brochure with an interactive book reader, page-turn sounds and a downloadable PDF." name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
@@ -27,9 +27,10 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css?v=20261008-reader" rel="stylesheet">
 
+  <link href="assets/css/brochure.css?v=20261008" rel="stylesheet">
 </head>
 
-<body>
+<body class="brochure-page">
 
   <!-- ======= Top Bar ======= -->
   <section id="topbar" class="d-flex align-items-center">
@@ -48,7 +49,7 @@
   </section>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
+  <header id="header" class="d-flex align-items-center" data-static-header>
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
@@ -82,8 +83,8 @@
 			  <li><a href="index.html#">Customer Support</a></li>
             </ul>
           </li>
-          <li><a class="nav-link active" href="gallery.html" aria-current="page">Project Gallery</a></li>
-          <li><a class="nav-link" href="brochure.html">Brochure</a></li>
+          <li><a class="nav-link" href="gallery.html">Project Gallery</a></li>
+          <li><a class="nav-link active" href="brochure.html" aria-current="page">Brochure</a></li>
           <li><a class="nav-link" href="index.html#media">Media</a></li>
           <li><a class="nav-link" href="index.html#contact">Contact Us</a></li>
         </ul>
@@ -94,38 +95,59 @@
   </header><!-- End Header -->
 
   <main id="main">
-    <section class="breadcrumbs" aria-label="Page heading">
+    <section class="brochure-intro" aria-labelledby="brochure-title">
       <div class="container">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-          <h1 class="h2 mb-0">Project Gallery</h1>
-          <nav aria-label="Breadcrumb">
-            <ol>
-              <li><a href="index.html">Home</a></li>
-              <li aria-current="page">Project Gallery</li>
-            </ol>
-          </nav>
+        <div>
+          <span class="brochure-eyebrow">Cool Zone Air Systems</span>
+          <h1 id="brochure-title">Our Brochure</h1>
+          <p>Open the cover. Explore our world of cooling.</p>
         </div>
+        <a class="reader-download" href="assets/documents/cool-zone-brochure.pdf" download="Cool-Zone-Brochure.pdf"><i class="bi bi-download" aria-hidden="true"></i> Download PDF <small>23.3 MB</small></a>
       </div>
     </section>
 
-    <section class="project-gallery" aria-label="Project photographs">
+    <section id="brochure-reader" class="brochure-reader" aria-label="Interactive brochure reader">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <figure class="project-card">
-              <a href="assets/img/gallery/vrv-systems.jpg" class="project-photo-link portfolio-lightbox" data-gallery="projects" data-title="VRV Systems" aria-label="View VRV Systems photo full size">
-                <img src="assets/img/gallery/vrv-systems.jpg" class="project-photo" width="1219" height="628" alt="Outdoor air-conditioning units installed on multiple steel platforms along a building exterior" decoding="async">
-              </a>
-              <figcaption>
-                <h2>VRV Systems</h2>
-                <p>Select the photo to view it full size.</p>
-              </figcaption>
-            </figure>
+        <div class="reader-shell">
+          <div class="reader-topline">
+            <span class="reader-edition">COMPANY BROCHURE &nbsp; / &nbsp; 16 PAGES</span>
+            <div class="reader-tools" hidden>
+              <button id="book-sound" type="button" aria-pressed="true" title="Toggle page-turn sounds"><i class="bi bi-volume-up" aria-hidden="true"></i> <span>Sound on</span></button>
+              <button id="book-zoom" type="button" aria-haspopup="dialog"><i class="bi bi-zoom-in" aria-hidden="true"></i> Enlarge pages</button>
+            </div>
           </div>
+          <div class="book-stage">
+            <div class="flipbook" data-position="front" tabindex="0" role="group" aria-label="Brochure pages. Use the left and right arrow keys to turn pages." aria-describedby="reader-hint">
+              <div class="book-page empty-page"></div>
+              <div class="book-page page-right"><img src="assets/img/brochure/page-01.jpg" width="1200" height="1698" alt="Cool Zone Air Systems brochure front cover" fetchpriority="high"></div>
+            </div>
+          </div>
+          <p id="book-error" role="alert" hidden></p>
+          <div class="reader-controls" hidden>
+            <button id="book-previous" type="button" aria-label="Previous page" disabled><i class="bi bi-arrow-left" aria-hidden="true"></i> <span class="button-label">Previous</span></button>
+            <div class="page-location">
+              <p id="book-status" role="status" aria-live="polite" aria-atomic="true">Page 1 of 16</p>
+              <label class="visually-hidden" for="book-page">Jump to page</label>
+              <select id="book-page"></select>
+            </div>
+            <button id="book-next" type="button" aria-label="Next page"><span class="button-label">Next</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <progress id="book-progress" max="16" value="1" aria-label="Brochure reading progress"></progress>
         </div>
+        <p id="reader-hint" class="reader-hint">Tap a page, swipe, or use the arrow buttons to turn. Page-turn sounds play as you browse.</p>
+        <p class="reader-fallback"><a href="assets/documents/cool-zone-brochure.pdf" target="_blank" rel="noopener">Prefer a PDF? Open the original brochure <span class="visually-hidden">in a new tab</span><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></p>
+        <noscript><p class="reader-fallback">Enable JavaScript to turn the pages, or use the PDF link to read the full brochure.</p></noscript>
       </div>
     </section>
   </main>
+
+  <dialog id="brochure-zoom" aria-labelledby="zoom-title">
+    <div class="zoom-toolbar">
+      <h2 id="zoom-title">Brochure close-up</h2>
+      <button type="button" aria-label="Close enlarged pages">Close <i class="bi bi-x-lg" aria-hidden="true"></i></button>
+    </div>
+    <div class="zoom-pages"></div>
+  </dialog>
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
@@ -158,8 +180,10 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20261008-reader"></script>
 
+  <script src="assets/js/brochure-state.js?v=20261008"></script>
+  <script src="assets/js/brochure.js?v=20261008"></script>
 </body>
 
 </html>

@@ -56,17 +56,18 @@ main() {
   fi
 
   commit=$(git rev-parse HEAD)
-  if [ "$mode" = --pull ] && [ -f "$marker" ] && [ "$(cat "$marker")" = "$commit" ] && [ -f "$destination/index.html" ] && [ -f "$destination/gallery.html" ]; then
+  if [ "$mode" = --pull ] && [ -f "$marker" ] && [ "$(cat "$marker")" = "$commit" ] && [ -f "$destination/index.html" ] && [ -f "$destination/gallery.html" ] && [ -f "$destination/brochure.html" ]; then
     exit 0
   fi
   test -f index.html
   test -f gallery.html
+  test -f brochure.html
   test -d assets
 
   # Publish assets first and replace the entry page only after they are copied.
   # Other hosting files (including .htaccess) are left in place.
   cp -R assets "$destination/"
-  for page in gallery.html index.html; do
+  for page in brochure.html gallery.html index.html; do
     temporary_page=$(mktemp "$destination/.coolzone-page.XXXXXX")
     trap 'rm -f -- "$temporary_page"' EXIT HUP INT TERM
     cp "$page" "$temporary_page"

@@ -1,0 +1,71 @@
+.brochure-page { background: #f3f6fa; }
+.brochure-intro { padding: 34px 0 22px; }
+.brochure-intro .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.brochure-intro h1 { margin: 4px 0 8px; color: #002060; font-size: clamp(28px, 4vw, 40px); font-weight: 700; }
+.brochure-intro p { margin: 0; color: #566478; }
+.brochure-eyebrow { color: #307700; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; }
+.reader-download { display: inline-flex; gap: 10px; align-items: center; padding: 12px 18px; border: 1px solid #c5cfde; border-radius: 8px; background: #fff; font-weight: 600; }
+.brochure-reader { padding: 0 0 36px; }
+.reader-shell { border: 1px solid #dbe3ee; border-radius: 16px; overflow: hidden; background: #e8edf4; box-shadow: 0 12px 40px #0020600b; }
+.reader-topline { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; background: #fff; padding: 14px 24px; border-bottom: 1px solid #dbe3ee; }
+.reader-edition { font-size: 13px; font-weight: 600; color: #526178; }
+.reader-tools { display: flex; gap: 8px; }
+.reader-tools[hidden], .reader-controls[hidden] { display: none; }
+.reader-tools button, .reader-controls button { border: 1px solid #ccd6e4; background: #fff; color: #002060; border-radius: 8px; min-height: 44px; padding: 10px 16px; font-weight: 600; }
+.reader-tools button { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+.reader-tools button:hover, .reader-controls button:hover:not(:disabled) { background: #eef4ff; }
+.reader-controls button:disabled { opacity: .4; cursor: not-allowed; }
+.book-stage { padding: 32px 30px 28px; overflow: hidden; background: radial-gradient(ellipse at center, #fafcff 0%, #dfe6ef 100%); perspective: 2000px; }
+.flipbook { position: relative; display: flex; margin: 0 auto; width: min(880px, 100%, max(400px, calc((100svh - 250px) * 1.4134))); aspect-ratio: 1200 / 849; perspective: 2000px; transform-style: preserve-3d; transition: transform 720ms cubic-bezier(.3,.05,.25,1); touch-action: pan-y; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.flipbook[data-position="front"] { transform: translateX(-25%); }
+.flipbook[data-position="back"] { transform: translateX(25%); }
+.book-page { position: relative; flex: 0 0 50%; width: 50%; height: 100%; background: #fff; box-shadow: 0 12px 22px #172a4433, 0 2px 3px #172a4433; }
+.book-page img, .leaf-face img { width: 100%; height: 100%; object-fit: contain; display: block; user-select: none; }
+.page-left:not(.empty-page)::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to right, transparent 92%, #0c20351f 99%, #0c20354d); }
+.page-right:not(.empty-page)::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to right, #0c203529, transparent 5%); }
+.book-page.empty-page { background: transparent; box-shadow: none; }
+.turning-leaf { position: absolute; top: 0; height: 100%; width: 50%; z-index: 3; transform-style: preserve-3d; pointer-events: none; }
+.turn-forward { right: 0; transform-origin: left center; }
+.turn-backward { left: 0; transform-origin: right center; }
+.leaf-face { position: absolute; inset: 0; background: #fff; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 8px 20px #172a4426; }
+.leaf-back { transform: rotateY(180deg); }
+.leaf-face::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #00206020, transparent 20%, #ffffff18 75%, #00206018); }
+.reader-controls { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 16px; padding: 20px 16px; background: #fff; }
+.reader-controls button { min-width: 112px; }
+.reader-controls #book-next { color: #fff; background: #002060; border-color: #002060; }
+.page-location { text-align: center; min-width: 170px; }
+#book-status { margin: 0 0 6px; font-size: 14px; color: #34465e; font-weight: 600; }
+#book-page { max-width: 180px; font-size: 13px; border: 1px solid #ccd6e4; border-radius: 5px; background: #fff; color: #34465e; padding: 5px 8px; }
+#book-progress { display: block; width: 100%; height: 4px; border: 0; accent-color: #3e9f00; }
+#book-progress::-webkit-progress-bar { background: #dfe6ef; }
+#book-progress::-webkit-progress-value { background: #3e9f00; }
+.reader-hint { text-align: center; font-size: 13px; color: #526178; margin: 18px 12px 0; }
+.reader-fallback { text-align: center; margin: 12px 0 0; font-size: 14px; }
+#book-error { margin: 0; padding: 12px 20px; color: #882d12; background: #fff1df; text-align: center; }
+.brochure-page :is(a, button, select, .flipbook):focus-visible { outline: 3px solid #3e9f00; outline-offset: 4px; }
+#brochure-zoom { padding: 0; width: min(1080px, 94vw); max-height: 94vh; border: 0; border-radius: 12px; background: #e8edf4; }
+#brochure-zoom::backdrop { background: #0b1c37bf; }
+.zoom-toolbar { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #fff; z-index: 1; border-bottom: 1px solid #ccd6e4; }
+.zoom-toolbar h2 { font-size: 18px; margin: 0; }
+.zoom-toolbar button { border: 1px solid #ccd6e4; border-radius: 6px; background: #fff; padding: 10px 16px; min-height: 44px; }
+.zoom-pages { display: grid; gap: 20px; padding: 20px; }
+.zoom-pages img { width: 100%; height: auto; display: block; }
+@media (max-width: 767px) {
+  .brochure-intro { padding-top: 24px; }
+  .brochure-intro p { font-size: 14px; }
+  .reader-topline { padding: 12px; }
+  .reader-edition { display: none; }
+  .reader-tools { width: 100%; justify-content: space-between; }
+  .book-stage { padding: 22px 16px; }
+  .flipbook { width: min(440px, 100%); aspect-ratio: 600 / 849; transform: none !important; }
+  .book-page, .turning-leaf.single-leaf { width: 100%; flex-basis: 100%; }
+  .book-page::after { display: none; }
+  .reader-controls { gap: 8px; padding: 16px 8px; }
+  .reader-controls button { min-width: 44px; padding: 10px 12px; }
+  .reader-controls .button-label { display: none; }
+  .page-location { min-width: 150px; }
+  .zoom-pages { padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flipbook { transition: none; }
+}
