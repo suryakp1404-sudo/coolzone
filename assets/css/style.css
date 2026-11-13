@@ -914,6 +914,23 @@ section {
   opacity: 1;
 }
 
+.clients .customer-logo img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+}
+
+.clients .customer-logo p {
+  margin: 12px 0 0;
+  color: #002060;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
 /*--------------------------------------------------------------
 # Counts
 --------------------------------------------------------------*/
